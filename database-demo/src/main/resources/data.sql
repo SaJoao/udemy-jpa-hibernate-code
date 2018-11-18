@@ -1,3 +1,6 @@
+-- This script runs automatically at application startup
+-- DB connection jdbc:h2:mem:testdb
+
 create table person
 (
 	id integer not null,
