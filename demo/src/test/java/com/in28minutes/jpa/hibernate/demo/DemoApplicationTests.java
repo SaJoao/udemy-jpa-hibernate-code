@@ -20,7 +20,7 @@ import com.in28minutes.jpa.hibernate.demo.repository.CourseRepository;
 @SpringBootTest
 public class DemoApplicationTests {
 
-	private Logger logger = LoggerFactory.getLogger(DemoApplicationTests.class);
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
 	private CourseRepository repository;
@@ -57,5 +57,13 @@ public class DemoApplicationTests {
 		assertNull(course);
 	}
 
+	
+	@Test
+	@DirtiesContext
+	public void playWithEntityManager() {
+		
+		repository.playWithEntityManager();
+		
+	}
 
 }
