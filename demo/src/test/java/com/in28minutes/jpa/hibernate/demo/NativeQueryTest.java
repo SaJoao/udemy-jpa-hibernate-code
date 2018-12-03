@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.in28minutes.jpa.hibernate.demo.entity.Course;
 
@@ -36,9 +37,9 @@ public class NativeQueryTest {
 	@Test
 	public void nativeGetCourseById() {
 
-		Query namedQuery = em.createNativeQuery("SELECT * FROM COURSE WHERE ID = ?");
-		namedQuery.setParameter(1, 10001L);
-		List<Course> resultList = namedQuery.getResultList();
+		Query query = em.createNativeQuery("SELECT * FROM COURSE WHERE ID = ?");
+		query.setParameter(1, 10001L);
+		List<Course> resultList = query.getResultList();
 
 		logger.info("Courses list: {}", resultList);
 	}
@@ -46,11 +47,21 @@ public class NativeQueryTest {
 	@Test
 	public void nativeGetCourseById_usingNamedParameter() {
 
-		Query namedQuery = em.createNativeQuery("SELECT * FROM COURSE WHERE ID = :id");
-		namedQuery.setParameter("id", 10001L);
-		List<Course> resultList = namedQuery.getResultList();
+		Query query = em.createNativeQuery("SELECT * FROM COURSE WHERE ID = :id");
+		query.setParameter("id", 10001L);
+		List<Course> resultList = query.getResultList();
 
 		logger.info("Courses list: {}", resultList);
+	}
+
+	@Test
+	@Transactional
+	public void nativeGetCourseById_Update() {
+
+		Query query = em.createNativeQuery("UPDATE COURSE SET LAST_UPDATED_DATE = SYSDATE()");
+		int noOfUpdatedRows = query.executeUpdate();
+
+		logger.info("Number of updated rows: {}", noOfUpdatedRows);
 	}
 
 }
