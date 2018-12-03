@@ -18,7 +18,7 @@ import com.in28minutes.jpa.hibernate.demo.repository.CourseRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class DemoApplicationTests {
+public class DemoApplicationTest {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	

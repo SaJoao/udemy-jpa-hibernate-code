@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.in28minutes.jpa.hibernate.demo.DemoApplicationTests;
+import com.in28minutes.jpa.hibernate.demo.DemoApplicationTest;
 import com.in28minutes.jpa.hibernate.demo.entity.Course;
 
 @Repository
@@ -46,17 +46,17 @@ public class CourseRepository {
 		logger.info("play with entity manager  - start");
 		
 		Course course1 = new Course("Web services in 100 steps");
-		Course course2 = new Course("Angular JS in 100 steps");
-		
 		em.persist(course1);
-		em.persist(course2);
-		em.flush();
 		
-		course1.setName("Web services in 100 steps - updated");
+		try {
+			Thread.currentThread().sleep(1000L);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Course course2 = findById(10002L);
 		course2.setName("Angular JS in 100 steps - updated");
-		
-		em.refresh(course1);
-		
-		em.flush();
+
 	}
 }
