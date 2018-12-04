@@ -8,24 +8,27 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.in28minutes.jpa.hibernate.demo.repository.CourseRepository;
+import com.in28minutes.jpa.hibernate.demo.repository.StudentRepository;
 
 @SpringBootApplication
-public class DemoApplication implements CommandLineRunner{
+public class DemoApplication implements CommandLineRunner {
 
 	private Logger logger = LoggerFactory.getLogger(DemoApplication.class);
-	
+
 	@Autowired
-	private CourseRepository repository;
-	
+	private CourseRepository courseRep;
+
+	@Autowired
+	private StudentRepository studentRep;
+
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
-		
-		
-		repository.playWithEntityManager();
-		
+
+		studentRep.saveStudentWithPassport();
+
 	}
 }
