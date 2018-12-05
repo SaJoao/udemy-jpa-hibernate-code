@@ -2,6 +2,7 @@ package com.in28minutes.jpa.hibernate.demo.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
@@ -16,7 +17,9 @@ public class Student {
 	@Column(nullable = false)
 	private String name;
 
-	@OneToOne
+	// ONE-TO-ONE relationships are EAGERLY fetched by default (retrieving the
+	// student also retrieves the passport). Fetch type LAZY changes this behavior.
+	@OneToOne(fetch = FetchType.LAZY)
 	private Passport passport;
 
 	protected Student() {
@@ -49,7 +52,8 @@ public class Student {
 
 	@Override
 	public String toString() {
-		return "Student [id=" + id + ", name=" + name + "]";
+		String str = "Student [id=" + id + ", name=" + name + "]\n";
+		return str;
 	}
 
 }
