@@ -12,9 +12,9 @@ insert into student (id, name, passport_id) values (20003, 'Manel', 40003);
 
 
 
-insert into review (id, rating, description) values (50001, '5', 'Great course');
-insert into review (id, rating, description) values (50002, '3', 'Humpf');
-insert into review (id, rating, description) values (50003, '4', 'Nice!');
-insert into review (id, rating, description) values (50004, '4', 'Muito bom');
-insert into review (id, rating, description) values (50005, '3', 'Porreiro');
+insert into review (id, rating, description, course_id) values (50001, '5', 'Great course', 10001);
+insert into review (id, rating, description, course_id) values (50002, '3', 'Humpf', 10002);
+insert into review (id, rating, description, course_id) values (50003, '4', 'Nice!', 10001);
+insert into review (id, rating, description, course_id) values (50004, '4', 'Muito bom', 10001);
+insert into review (id, rating, description, course_id) values (50005, '3', 'Porreiro', 10003);
 
