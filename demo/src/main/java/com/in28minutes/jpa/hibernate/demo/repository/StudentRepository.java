@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.in28minutes.jpa.hibernate.demo.entity.Course;
 import com.in28minutes.jpa.hibernate.demo.entity.Passport;
 import com.in28minutes.jpa.hibernate.demo.entity.Student;
 
@@ -47,6 +48,17 @@ public class StudentRepository {
 		Student student = new Student("Tino");
 		student.setPassport(passport);
 		em.persist(student);
+	}
+
+	public void insertStudentAndCourse(Student student, Course course) {
+
+		student.addCourse(course);
+		course.addStudent(student);
+
+		// To ensure that the relation table is populated we must persist the owning
+		// side of the relation
+		em.persist(student);
+		em.persist(course);
 	}
 
 }

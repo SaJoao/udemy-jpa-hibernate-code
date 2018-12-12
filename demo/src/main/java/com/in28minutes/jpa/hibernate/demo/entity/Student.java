@@ -1,10 +1,16 @@
 package com.in28minutes.jpa.hibernate.demo.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -21,6 +27,12 @@ public class Student {
 	// student also retrieves the passport). Fetch type LAZY changes this behavior.
 	@OneToOne(fetch = FetchType.LAZY)
 	private Passport passport;
+
+	@ManyToMany
+	// @JoinTable annotation is not required to establish the relation, we are using
+	// it to change the name of the join table and the name of its columns
+	@JoinTable(name = "STUDENT_COURSE", joinColumns = @JoinColumn(name = "STUDENT_ID"), inverseJoinColumns = @JoinColumn(name = "COURSE_ID"))
+	private List<Course> courses = new ArrayList<>();
 
 	protected Student() {
 		// Needed by JPA
@@ -48,6 +60,14 @@ public class Student {
 
 	public void setPassport(Passport passport) {
 		this.passport = passport;
+	}
+
+	public List<Course> getCourses() {
+		return courses;
+	}
+
+	public void addCourse(Course course) {
+		this.courses.add(course);
 	}
 
 	@Override
