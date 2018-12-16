@@ -3,7 +3,7 @@ insert into course (id, name, created_date, last_updated_date) values (10002, 'S
 insert into course (id, name, created_date, last_updated_date) values (10003, 'Spring Boot in 100 steps', sysdate(), sysdate());
 
 insert into passport (id, number) values (40001, 'PT0191919');
-insert into passport (id, number) values (40002, 'PT3534565');
+insert into passport (id, number) values (40002, 'PT123465');
 insert into passport (id, number) values (40003, 'PT2345435');
 
 insert into student (id, name, passport_id) values (20001, 'Joao', 40001);
